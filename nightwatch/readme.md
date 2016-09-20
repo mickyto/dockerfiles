@@ -1,15 +1,18 @@
-# Docker container for shipit
+# Docker container with [Nightwatch.js](http://nightwatchjs.org)
 
-This docker consists of node.js and shipit-cli and useful for deploying node.js application
+This docker consists of node.js and globally installed nightwatch and created for testing node.js application
 
 ## Usage
 
-The container requires `shipitfile.js` and [shipit-deploy](https://github.com/shipitjs/shipit-deploy) from your application source
+First you need to link [selenium container](https://hub.docker.com/r/selenium/standalone-firefox/) to your app container
 
 ```
-docker run -t --rm -v yourAppDirName:/usr/src/app -v ~/.ssh:/root/.ssh shipit shipit staging deploy 
+docker run -d -P --name selenium --link <yourappcontainer>:app selenium/standalone-firefox
 ```
 
-## Build container
+Then to run tests getting access to both application and selenium containers.
+Note that command below requires you run it from your application's working directory and `package.json` contains test script  
 
-docker build -t shipit .
+```
+docker run --rm --link selenium -v "$PWD":/usr/src/app -w /usr/src/app mickyto/nightwatch npm test
+```

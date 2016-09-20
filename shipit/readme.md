@@ -12,4 +12,6 @@ docker run -t --rm -v yourAppDirName:/usr/src/app -v ~/.ssh:/root/.ssh shipit sh
 
 ## Build container
 
+```
 docker build -t shipit .
+```
