@@ -16,12 +16,10 @@ docker run -t --rm -v "$PWD"/shipitfile.js:/usr/src/app/shipitfile.js -v ~/.ssh:
 module.exports = function (shipit) {
     require('shipit-deploy')(shipit);
 
-    var wd = '/path/to/deploy';
-
     shipit.initConfig({
         default: {
             workspace: '/tmp/git-monitor',
-            deployTo: wd,
+            deployTo: '/path/to/deploy',
             repositoryUrl: 'https://github.com/username/reponame.git',
             ignores: ['files', 'not', 'for', 'deploy'],
             keepReleases: 2,
