@@ -1,4 +1,4 @@
-FROM node:4.5.0
+FROM node:8.7.0
 
 MAINTAINER Igor Egay https://github.com/Mickyto
 RUN mkdir -p /usr/src/app
